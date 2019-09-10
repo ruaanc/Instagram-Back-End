@@ -26,7 +26,7 @@ Route::namespace('API')->name('api.')->group(function(){
         Route::get('/', 'PostController@index')->name('index_post');
         
         // List by id
-        Route::get('/{id}', 'PostsController@show')->name('single_post');
+        Route::get('/{id}', 'PostController@show')->name('single_post');
 
         // * Post
 
