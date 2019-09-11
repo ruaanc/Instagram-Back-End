@@ -77,8 +77,16 @@ class PostController extends Controller
     /*
         * Delete post
     */
-    public function destroy() {
-        return 'Controller destroy created with successfully !';
+    public function destroy(Post $id) {
+        try {
+            $id->delete();
+            return response()->json(['data' => ['msg' => 'Post: '. $id->name . ' removido com sucesso!']], 200);
+        } catch (\Exception $e) {
+            if(config('app.debug')){
+                return response()->json(ApiError::errorMessage($e->getMessage(), 1012), 500);
+            }
+            return reponse()->json(ApiError::errorMessage('Houve um erro ao realizar operação de remover', 1012), 500);
+        }
     }
 
     /*
