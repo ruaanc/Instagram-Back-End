@@ -4,14 +4,28 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Post;
 
 class PostController extends Controller
 {   
-    /*
-        * Show all posts
-    */
+
+    /**
+     * @var Post
+     */
+    private $post;
+
+
+    public function __construct(Post $post) {
+
+        $this->post = $post;
+
+    }
+
+    /**
+     * Show all posts
+     */
     public function index() {
-        return 'Controller index created with successfully !';
+        return response()->json($this->post->paginate(10));
     }
 
     /*

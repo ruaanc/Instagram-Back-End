@@ -12,11 +12,11 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Post')->insert([
-            'author'            => 'Ruan Carlos', 
+        DB::table('Posts')->insert([
+            'author'            => 'Ruan Silva', 
             'place'             => 'Rio Tinto',
             'description'       => 'Vida boa !',
-            'hashtags'          => '#life #saude #paz',
+            'hashtags'          => '#life #saude #paz #festa',
             'image'             => 'https://pipa.com.br/pipa-backend/media/filer_public/5a/7b/5a7b321e-0eca-4535-8be1-c208f4bb0763/praia-do-centro-pipa-capa.jpg',
             'like'              => '0'
         ]);

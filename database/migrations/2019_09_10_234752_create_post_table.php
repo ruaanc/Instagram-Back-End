@@ -13,7 +13,7 @@ class CreatePostTable extends Migration
      */
     public function up()
     {
-        Schema::create('Post', function(Blueprint $table){
+        Schema::create('Posts', function(Blueprint $table){
             $table->bigIncrements('id');
             $table->string('author');
             $table->string('place');
