@@ -60,8 +60,18 @@ class PostController extends Controller
     /*
         * Update post
     */
-    public function update() {
-        return 'Controller update created with successfully !';
+    public function update(Request $request, $id) {
+        try {
+            $postData = $request->all();
+            $post = $this->post->find($id);
+            $post->update($postData);
+            return response()->json(['msg' => 'Post atualizado com sucesso!'], 201);
+        } catch (\Exception $e) {
+            if(config('app.debug')){
+                return response()->json(ApiError::errorMessage($e->getMessage(), 1011), 500);
+            }
+            return reponse()->json(ApiError::errorMessage('Houve um erro ao realizar operação atualizar', 1011), 500);
+        }
     }
 
     /*
