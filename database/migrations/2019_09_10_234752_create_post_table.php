@@ -20,8 +20,8 @@ class CreatePostTable extends Migration
             $table->string('description');
             $table->string('hashtags');
             $table->string('image');
-            $table->integer('like');
-            $table->timestamp();
+            $table->integer('like')->default(0);
+            $table->timestamps();
         });
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Post;
 
 class PostSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        Post::create([
+        DB::table('Post')->insert([
             'author'            => 'Ruan Carlos', 
             'place'             => 'Rio Tinto',
             'description'       => 'Vida boa !',
