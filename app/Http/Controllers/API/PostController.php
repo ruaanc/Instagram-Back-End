@@ -28,11 +28,16 @@ class PostController extends Controller
         return response()->json($this->post->paginate(10));
     }
 
-    /*
-        * Show post by id
-    */
+     /**
+     * Show post by id
+     */
     public function show($id) {
-        return 'Controller show created with successfully !';
+        $post = $this->post->find($id);
+
+        if(! $post) return response()->json(['data' => ['msg' => 'Post não encontrado!']], 404);
+        
+        $data = ['data' => $post];
+        return response()->json($data);
     }
 
     /*
