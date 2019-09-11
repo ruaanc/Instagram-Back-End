@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Post;
+use \App\API\ApiError;
 
 class PostController extends Controller
 {   
@@ -40,11 +41,20 @@ class PostController extends Controller
         return response()->json($data);
     }
 
-    /*
-        * Register post
-    */
-    public function store() {
-        return 'Controller store created with successfully !';
+    /**
+     * Register post
+     */
+    public function store(Request $request) {
+        try {
+            $postData = $request->all();
+            $this->post->create($postData);
+            return response()->json(['msg' => 'Post criado com sucesso!'], 201);
+        } catch (\Exception $e) {
+            if(config('app.debug')){
+                return response()->json(ApiError::errorMessage($e->getMessage(), 1010), 500);
+            }
+            return reponse()->json(ApiError::errorMessage('Houve um erro ao realizar operação', 1010), 500);
+        }
     }
 
     /*
