@@ -12,7 +12,7 @@ class PostController extends Controller
 
     /**
      * @var Post
-     */
+    */
     private $post;
 
 
@@ -24,14 +24,14 @@ class PostController extends Controller
 
     /**
      * Show all posts
-     */
+    */
     public function index() {
         return response()->json($this->post->paginate(10));
     }
 
-     /**
+    /**
      * Show post by id
-     */
+    */
     public function show($id) {
         $post = $this->post->find($id);
 
@@ -43,7 +43,7 @@ class PostController extends Controller
 
     /**
      * Register post
-     */
+    */
     public function store(Request $request) {
         try {
             $postData = $request->all();
@@ -57,8 +57,8 @@ class PostController extends Controller
         }
     }
 
-    /*
-        * Update post
+    /**
+     * Update post
     */
     public function update(Request $request, $id) {
         try {
@@ -74,8 +74,8 @@ class PostController extends Controller
         }
     }
 
-    /*
-        * Delete post
+    /**
+     * Delete post
     */
     public function destroy(Post $id) {
         try {
@@ -92,7 +92,18 @@ class PostController extends Controller
     /*
         * Like post
     */
-    public function like() {
-        return 'Controller like created with successfully !';
+    public function like(Request $request, $id) {
+        try {
+            $postData = $request->all();
+            $post = $this->post->find($id);
+            $post->like += 1;
+            $post->update($postData);
+            return response()->json(['msg' => 'Post atualizado com sucesso!'], 201);
+        } catch (\Exception $e) {
+            if(config('app.debug')){
+                return response()->json(ApiError::errorMessage($e->getMessage(), 1011), 500);
+            }
+            return reponse()->json(ApiError::errorMessage('Houve um erro ao realizar operação atualizar', 1011), 500);
+        }
     }
 }
