@@ -89,8 +89,8 @@ class PostController extends Controller
         }
     }
 
-    /*
-        * Like post
+    /**
+     * Like post
     */
     public function like(Request $request, $id) {
         try {
@@ -98,7 +98,7 @@ class PostController extends Controller
             $post = $this->post->find($id);
             $post->like += 1;
             $post->update($postData);
-            return response()->json(['msg' => 'Post atualizado com sucesso!'], 201);
+            return response()->json(['msg' => 'Curtida!'], 201);
         } catch (\Exception $e) {
             if(config('app.debug')){
                 return response()->json(ApiError::errorMessage($e->getMessage(), 1011), 500);
