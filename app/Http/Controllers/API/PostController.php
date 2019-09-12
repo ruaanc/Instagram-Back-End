@@ -15,7 +15,9 @@ class PostController extends Controller
     */
     private $post;
 
-
+    /**
+     * Constructor
+     */
     public function __construct(Post $post) {
 
         $this->post = $post;

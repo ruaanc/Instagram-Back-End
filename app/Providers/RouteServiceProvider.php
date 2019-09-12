@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use \App\Post;
+use App\Http\Controllers\API\PostController;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -65,9 +67,20 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
+        /*
         Route::prefix('api')
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+             */
+        
+        Route::group([
+            'middleware' => ['api', 'cors'],
+            'namespace' => 'App\Http\Controllers\API',
+            'prefix' => 'api',
+        ], function ($router) {
+            //Add you routes here, for example:
+            Route::apiResource('/posts','PostController');
+        });
     }
 }
