@@ -39,7 +39,7 @@ Route::namespace('API')->name('api.')->group(function(){
         Route::put('/{id}', 'PostController@update')->name('update_post');
 
         // Like
-        Route::put('/likes/{id}', 'PostController@like')->name('like_post');
+        Route::post('/likes/{id}', 'PostController@like')->name('like_post');
 
         // * Delete
 

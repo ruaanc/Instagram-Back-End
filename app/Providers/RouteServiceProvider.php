@@ -80,6 +80,7 @@ class RouteServiceProvider extends ServiceProvider
         ], function ($router) {
             //Add you routes here, for example:
                 Route::apiResources([
+                    'posts/likes' => 'PostController',
                     'posts' => 'PostController'
                 ]);
         });
