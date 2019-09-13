@@ -47,4 +47,6 @@ Route::namespace('API')->name('api.')->group(function(){
         Route::delete('/{id}', 'PostController@destroy')->name('destroy_post');
 
     });
+
 });
+
